@@ -1,7 +1,11 @@
 import streamlit as st
 from utils import validar_session_state
 
-def configurar_pantalla1():
+def configurar_pantalla1(callback):
+    """
+    Configuración y contenido de la Pantalla 1.
+    callback: función para cambiar a la siguiente pantalla.
+    """
     validar_session_state()
     
     st.title("Creador de imágenes con IA")
@@ -68,5 +72,4 @@ def configurar_pantalla1():
     }
 
     if st.button("Generar Prompt →", use_container_width=True):
-        st.session_state.pantalla_actual = "pantalla2"
-        st.experimental_rerun()
+        callback()  # Cambia a Pantalla 2 llamando al callback
