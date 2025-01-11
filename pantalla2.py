@@ -63,9 +63,10 @@ def generar_prompt(params):
     prompt_final = " ".join(frases)
     return prompt_final.strip()
 
-def configurar_pantalla2(mostrar_pantalla1=None):
+def configurar_pantalla2(callback):
     """
     Configura la segunda pantalla de la aplicación donde se muestra y edita el prompt generado.
+    callback: función para cambiar a la pantalla anterior.
     """
     validar_session_state()
 
@@ -129,8 +130,8 @@ def configurar_pantalla2(mostrar_pantalla1=None):
     # Botón para volver al final
     st.markdown("---")
     if st.button("← Volver a editar", use_container_width=True):
-        if mostrar_pantalla1:
-            mostrar_pantalla1()
+        if callback:
+            callback()
     
     # Footnote
     st.markdown("---")
