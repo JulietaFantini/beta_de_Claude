@@ -25,6 +25,7 @@ def configurar_pantalla1(callback):
             "2. Tipo de imagen",
             ["Fotografía", "Ilustración", "Render 3D", "Arte Digital", "Otro"]
         )
+        tipo_personalizado = ""
         if tipo_imagen == "Otro":
             tipo_personalizado = st.text_input("Especificá el tipo:")
 
@@ -33,6 +34,7 @@ def configurar_pantalla1(callback):
             "3. Estilo artístico",
             ["Realista", "Minimalista", "Artístico", "Futurista", "Vintage", "Otro"]
         )
+        estilo_personalizado = ""
         if estilo == "Otro":
             estilo_personalizado = st.text_input("Especificá el estilo:")
 
@@ -60,6 +62,7 @@ def configurar_pantalla1(callback):
         acabado = st.selectbox("Acabado",
             ["Natural", "Suavizado", "Detallado", "Artístico"])
 
+    # Almacenar parámetros en session_state
     st.session_state.params = {
         "idea_inicial": idea,
         "tipo_imagen": tipo_personalizado if tipo_imagen == "Otro" else tipo_imagen,
@@ -71,5 +74,6 @@ def configurar_pantalla1(callback):
         "acabado": acabado
     }
 
-    if st.button("Generar Prompt →", use_container_width=True):
+    # Botón para avanzar
+    if st.button("Generar Prompt →"):
         callback()  # Cambia a Pantalla 2 llamando al callback
