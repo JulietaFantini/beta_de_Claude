@@ -69,9 +69,9 @@ def main():
 
     # Mostrar pantalla correspondiente
     if st.session_state.pantalla_actual == "pantalla1":
-        configurar_pantalla1(mostrar_pantalla2)
+        configurar_pantalla1(mostrar_pantalla2)  # Ajustado para que la función acepte un argumento
     else:
-        configurar_pantalla2(mostrar_pantalla1)
+        configurar_pantalla2(mostrar_pantalla1)  # Ajustado para que la función acepte un argumento
 
 if __name__ == "__main__":
     main()
