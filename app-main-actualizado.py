@@ -41,21 +41,22 @@ def main():
         }
 
         /* Expanders con fondo personalizado */
-        .st-expander {
+        [data-testid="stExpander"] {
             background-color: var(--secondary-background-color) !important; 
             border-radius: 8px;
+            padding: 10px;
         }
 
         /* Inputs y labels personalizados */
-        .stTextInput label, .stTextArea label, 
-        .stSelectbox label, .stRadio label, .stCheckbox label {
+        [data-testid="stTextInput"] label, [data-testid="stTextArea"] label, 
+        [data-testid="stSelectbox"] label, [data-testid="stRadio"] label, [data-testid="stCheckbox"] label {
             font-family: var(--font) !important;
             color: var(--text-color) !important;
         }
-        .stTextInput input, .stTextArea textarea, 
-        .stSelectbox [role="combobox"], 
-        .stRadio div[data-testid="stMarkdownContainer"],
-        .stCheckbox div[data-testid="stMarkdownContainer"] {
+        [data-testid="stTextInput"] input, [data-testid="stTextArea"] textarea, 
+        [data-testid="stSelectbox"] [role="combobox"], 
+        [data-testid="stRadio"] div[data-testid="stMarkdownContainer"],
+        [data-testid="stCheckbox"] div[data-testid="stMarkdownContainer"] {
             font-family: var(--font) !important;
         }
 
