@@ -9,20 +9,19 @@ def generar_prompt(params):
     frases = []
 
     # (1) Idea Inicial
-    idea = params["idea_inicial"].strip()
+    idea = params.get("idea_inicial", "").strip()
     if idea:
         frases.append(f"Imaginá {idea}.")
 
     # (2) Tipo de Imagen + Estilo Artístico
-    if "Otro" in params["tipo_imagen"]:
-        tipo = params.get("tipo_imagen_personalizado", "").strip()
-    else:
-        tipo = params["tipo_imagen"]
+    tipo = params.get("tipo_imagen", "").strip()
+    estilo = params.get("estilo_artistico", "").strip()
 
-    if "Otro" in params["estilo_artistico"]:
+    if tipo == "Otro":
+        tipo = params.get("tipo_imagen_personalizado", "").strip()
+
+    if estilo == "Otro":
         estilo = params.get("estilo_artistico_personalizado", "").strip()
-    else:
-        estilo = params["estilo_artistico"]
 
     if tipo and estilo:
         frases.append(f"Se trata de un {tipo.lower()} con un estilo {estilo.lower()}.")
@@ -30,13 +29,14 @@ def generar_prompt(params):
         frases.append(f"Se trata de un {tipo.lower()}.")
 
     # (3) Propósito
-    proposito_cat = params.get("proposito_categoria")
+    proposito_cat = params.get("proposito_categoria", "")
     subcat = params.get("proposito_subcategoria", "")
-    if "Otro" in proposito_cat:
+
+    if proposito_cat == "Otro":
         proposito_personalizado = params.get("proposito_personalizado", "").strip()
         if proposito_personalizado:
             frases.append(f"Fue creada para {proposito_personalizado.lower()}.")
-    else:
+    elif proposito_cat:
         if subcat:
             frases.append(f"Fue creada para {proposito_cat.lower()}, específicamente {subcat.lower()}.")
         else:
@@ -58,6 +58,8 @@ def generar_prompt(params):
 
     if detalles:
         frases.append("Incluye detalles como " + ", ".join(detalles) + ".")
+    else:
+        frases.append("No se especificaron características técnicas detalladas.")
 
     # Unir todo en un solo texto
     prompt_final = " ".join(frases)
