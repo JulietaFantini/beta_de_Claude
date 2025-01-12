@@ -3,6 +3,11 @@ from pantalla1 import configurar_pantalla1
 from pantalla2 import configurar_pantalla2
 from utils import configurar_sidebar, validar_session_state
 
+def load_custom_css():
+    """Carga los estilos personalizados desde un archivo CSS"""
+    with open('assets/styles/styles.css') as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
 def main():
     """
     Punto de entrada principal de la aplicación.
@@ -15,6 +20,9 @@ def main():
         layout="wide",
         initial_sidebar_state="expanded"
     )
+
+    # Cargar los estilos personalizados desde styles.css
+    load_custom_css()
 
     # Inyectar CSS adicional para anular el estilo predeterminado de Streamlit
     st.markdown(
