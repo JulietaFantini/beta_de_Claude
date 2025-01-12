@@ -1,79 +1,63 @@
 import streamlit as st
-from utils import validar_session_state
+from src.utils.utils import generar_dropdown, filtrar_valores, validar_errores
 
-def configurar_pantalla1(callback):
+def configurar_pantalla1(cambiar_pantalla):
     """
-    Configuración y contenido de la Pantalla 1.
-    callback: función para cambiar a la siguiente pantalla.
+    Configura la Pantalla 1 del generador de prompts.
     """
-    validar_session_state()
-    
+    if "params" not in st.session_state:
+        st.session_state.params = {}
+
+    params = st.session_state.params
+
     st.title("Creador de imágenes con IA")
-    st.markdown("Herramienta para diseñar imágenes únicas y generar descripciones efectivas para IA.")
+    st.markdown(
+        "Herramienta para diseñar imágenes únicas y generar descripciones efectivas para IA. Comienza completando los campos obligatorios."
+    )
 
-    with st.container():
-        st.header("1. Idea Inicial")
-        idea = st.text_area(
-            "¿Qué imagen tenés en mente?",
-            placeholder="Ej: Ciudad futurista flotando entre nubes al atardecer",
-            height=100
+    # Parámetros obligatorios
+    st.header("Parámetros Clave")
+    st.caption("Campos obligatorios para generar el prompt")
+
+    params = generar_dropdown(
+        "Tipo de imagen",
+        "Selecciona el tipo de imagen que quieres generar.",
+        ["Seleccioná una opción...", "Fotografía", "Ilustración", "Render 3D", "Otro"],
+        params
+    )
+
+    if params.get("tipo_de_imagen", "").lower() == "otro":
+        params["tipo_de_imagen_personalizado"] = st.text_input(
+            "Describe el tipo de imagen (ej.: 'Collage surrealista')"
         )
-    
-    col1, col2 = st.columns(2)
-    with col1:
-        tipo_imagen = st.selectbox(
-            "2. Tipo de imagen",
-            ["Fotografía", "Ilustración", "Render 3D", "Arte Digital", "Otro"]
+
+    params["idea_inicial"] = st.text_input(
+        "Describe tu idea inicial",
+        placeholder="Ejemplo: Una ciudad flotante al amanecer."
+    )
+
+    params = generar_dropdown(
+        "Estilo artístico",
+        "Selecciona un estilo visual para la imagen.",
+        ["Seleccioná una opción...", "Arte Digital", "Minimalismo", "Surrealismo", "Otro"],
+        params
+    )
+
+    if params.get("estilo_artístico", "").lower() == "otro":
+        params["estilo_artístico_personalizado"] = st.text_input(
+            "Describe tu estilo artístico personalizado"
         )
-        tipo_personalizado = ""
-        if tipo_imagen == "Otro":
-            tipo_personalizado = st.text_input("Especificá el tipo:")
 
-    with col2:
-        estilo = st.selectbox(
-            "3. Estilo artístico",
-            ["Realista", "Minimalista", "Artístico", "Futurista", "Vintage", "Otro"]
-        )
-        estilo_personalizado = ""
-        if estilo == "Otro":
-            estilo_personalizado = st.text_input("Especificá el estilo:")
-
-    st.header("4. Características Técnicas")
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        iluminacion = st.selectbox("Iluminación", 
-            ["Natural (Luz día)", "Artificial", "Dramática", "Ambiental", "Nocturna"])
-    
-    with col2:
-        plano = st.selectbox("Plano",
-            ["General (Todo el contexto)", "Primer plano", "Plano medio", "Plano detalle"])
-    
-    with col3:
-        composicion = st.selectbox("Composición",
-            ["Centrada", "Regla de tercios", "Simétrica", "Dinámica"])
-
-    col4, col5 = st.columns(2)
-    with col4:
-        resolucion = st.selectbox("Resolución",
-            ["Redes Sociales (1080x1080)", "Web (1920x1080)", "Móvil (750x1334)", "Alta Calidad (4K)"])
-    
-    with col5:
-        acabado = st.selectbox("Acabado",
-            ["Natural", "Suavizado", "Detallado", "Artístico"])
-
-    # Almacenar parámetros en session_state
-    st.session_state.params = {
-        "idea_inicial": idea,
-        "tipo_imagen": tipo_personalizado if tipo_imagen == "Otro" else tipo_imagen,
-        "estilo_artistico": estilo_personalizado if estilo == "Otro" else estilo,
-        "iluminacion": iluminacion,
-        "plano": plano,
-        "composicion": composicion,
-        "resolucion": resolucion,
-        "acabado": acabado
-    }
+    # Validar errores
+    errores = validar_errores(params)
 
     # Botón para avanzar
-    if st.button("Generar Prompt →"):
-        callback()  # Cambia a Pantalla 2 llamando al callback
+    if st.button("Validar y continuar"):
+        if errores:
+            st.error("\n".join(errores))
+        else:
+            st.session_state.params = params
+            cambiar_pantalla()
+
+if __name__ == "__main__":
+    configurar_pantalla1(lambda: print("Pantalla 2"))
