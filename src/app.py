@@ -1,7 +1,7 @@
 import streamlit as st
-from pantalla1 import configurar_pantalla1
-from pantalla2 import configurar_pantalla2
-from utils import configurar_sidebar, validar_session_state
+from src.pantalla1 import configurar_pantalla1
+from src.pantalla2 import configurar_pantalla2
+from src.utils.utils import configurar_sidebar, validar_session_state
 
 def load_custom_css():
     """Carga los estilos personalizados desde un archivo CSS"""
@@ -20,6 +20,10 @@ def main():
         layout="wide",
         initial_sidebar_state="expanded"
     )
+
+    # Inicializa el estado de la pantalla
+    if "pantalla_actual" not in st.session_state:
+        st.session_state.pantalla_actual = "pantalla1"
 
     # Cargar los estilos personalizados desde styles.css
     load_custom_css()
