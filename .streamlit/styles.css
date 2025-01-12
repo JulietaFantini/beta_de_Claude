@@ -1,0 +1,129 @@
+/* Sistema de Diseño - Generador de Prompts */
+
+/* Tipografía Base - DM Sans Variable */
+@font-face {
+    font-family: 'DM Sans';
+    src: url('assets/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('truetype-variations');
+    font-weight: 100 1000;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    src: url('assets/fonts/DM_Sans/DMSans-Italic-VariableFont_opsz,wght.ttf') format('truetype-variations');
+    font-weight: 100 1000;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Tipografía Monoespaciada - DM Mono */
+@font-face {
+    font-family: 'DM Mono';
+    src: url('assets/fonts/DM_Mono/DMMono-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DM Mono';
+    src: url('assets/fonts/DM_Mono/DMMono-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DM Mono';
+    src: url('assets/fonts/DM_Mono/DMMono-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+/* Estilos Generales */
+.stApp {
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Headers y Títulos */
+.st-emotion-cache-18ni7ap.e8zbici2 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    color: #6B46C1;
+}
+
+/* Contenedores */
+.st-emotion-cache-r421ms.e1f1d6gn0 {
+    border: 1px solid rgba(107, 70, 193, 0.1);
+    border-radius: 8px;
+    background-color: white;
+    padding: 1.5rem;
+}
+
+/* Botones */
+.stButton > button {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    background-color: #2DD4BF !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease;
+}
+
+.stButton > button:hover {
+    background-color: #25b4a2 !important;
+    transform: translateY(-1px);
+}
+
+/* Campos de Entrada */
+.stTextInput input, .stTextArea textarea {
+    font-family: 'DM Sans', sans-serif;
+    border-color: rgba(107, 70, 193, 0.2);
+    border-radius: 6px;
+}
+
+/* Selectores */
+.stSelectbox > div > div {
+    font-family: 'DM Sans', sans-serif;
+    border-color: rgba(107, 70, 193, 0.2);
+    border-radius: 6px;
+}
+
+/* Área de Prompt */
+.prompt-area {
+    font-family: 'DM Mono', monospace;
+    font-weight: 400;
+    background-color: #F8F6FF;
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+/* Mensajes Informativos */
+.stInfo {
+    font-family: 'DM Sans', sans-serif;
+    background-color: rgba(45, 212, 191, 0.1);
+    border-color: #2DD4BF;
+}
+
+.stSuccess {
+    background-color: rgba(4, 120, 87, 0.1);
+    border-color: #047857;
+}
+
+/* Sidebar */
+.sidebar .stMarkdown {
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* Expander */
+.streamlit-expanderHeader {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    background-color: #F8F6FF;
+    border-radius: 6px;
+}
+
+/* Utilidades */
+.mono-text {
+    font-family: 'DM Mono', monospace !important;
+}
