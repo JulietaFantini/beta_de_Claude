@@ -3,14 +3,14 @@
 /* Tipografía Base - DM Sans Variable */
 @font-face {
     font-family: 'DM Sans';
-    src: url('assets/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('truetype-variations');
+    src: url('../assets/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('truetype-variations');
     font-weight: 100 1000;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'DM Sans';
-    src: url('assets/fonts/DM_Sans/DMSans-Italic-VariableFont_opsz,wght.ttf') format('truetype-variations');
+    src: url('../assets/fonts/DM_Sans/DMSans-Italic-VariableFont_opsz,wght.ttf') format('truetype-variations');
     font-weight: 100 1000;
     font-style: italic;
     font-display: swap;
@@ -19,23 +19,32 @@
 /* Tipografía Monoespaciada - DM Mono */
 @font-face {
     font-family: 'DM Mono';
-    src: url('assets/fonts/DM_Mono/DMMono-Regular.ttf') format('truetype');
+    src: url('../assets/fonts/DM_Mono/DMMono-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'DM Mono';
-    src: url('assets/fonts/DM_Mono/DMMono-Medium.ttf') format('truetype');
+    src: url('../assets/fonts/DM_Mono/DMMono-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'DM Mono';
-    src: url('assets/fonts/DM_Mono/DMMono-Light.ttf') format('truetype');
+    src: url('../assets/fonts/DM_Mono/DMMono-Light.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
+}
+
+/* Variables CSS para mejor mantenimiento */
+:root {
+    --color-primary: #6B46C1;
+    --color-accent: #2DD4BF;
+    --color-accent-hover: #25b4a2;
+    --color-background: #F8F6FF;
+    --border-radius: 8px;
 }
 
 /* Estilos Generales */
@@ -47,13 +56,13 @@
 .st-emotion-cache-18ni7ap.e8zbici2 {
     font-family: 'DM Sans', sans-serif;
     font-weight: 600;
-    color: #6B46C1;
+    color: var(--color-primary);
 }
 
 /* Contenedores */
 .st-emotion-cache-r421ms.e1f1d6gn0 {
     border: 1px solid rgba(107, 70, 193, 0.1);
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     background-color: white;
     padding: 1.5rem;
 }
@@ -62,21 +71,22 @@
 .stButton > button {
     font-family: 'DM Sans', sans-serif;
     font-weight: 500;
-    background-color: #2DD4BF !important;
+    background-color: var(--color-accent) !important;
     color: white !important;
     border: none !important;
     padding: 0.75rem 1.5rem !important;
-    border-radius: 8px !important;
+    border-radius: var(--border-radius) !important;
     transition: all 0.2s ease;
 }
 
 .stButton > button:hover {
-    background-color: #25b4a2 !important;
+    background-color: var(--color-accent-hover) !important;
     transform: translateY(-1px);
 }
 
 /* Campos de Entrada */
-.stTextInput input, .stTextArea textarea {
+.stTextInput input, 
+.stTextArea textarea {
     font-family: 'DM Sans', sans-serif;
     border-color: rgba(107, 70, 193, 0.2);
     border-radius: 6px;
@@ -93,7 +103,7 @@
 .prompt-area {
     font-family: 'DM Mono', monospace;
     font-weight: 400;
-    background-color: #F8F6FF;
+    background-color: var(--color-background);
     padding: 1rem;
     border-radius: 6px;
 }
@@ -102,7 +112,7 @@
 .stInfo {
     font-family: 'DM Sans', sans-serif;
     background-color: rgba(45, 212, 191, 0.1);
-    border-color: #2DD4BF;
+    border-color: var(--color-accent);
 }
 
 .stSuccess {
@@ -119,11 +129,25 @@
 .streamlit-expanderHeader {
     font-family: 'DM Sans', sans-serif;
     font-weight: 500;
-    background-color: #F8F6FF;
+    background-color: var(--color-background);
     border-radius: 6px;
 }
 
 /* Utilidades */
 .mono-text {
     font-family: 'DM Mono', monospace !important;
+}
+
+/* Mejoras de Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .stButton > button {
+        transition: none;
+    }
+}
+
+/* Soporte para Modo Oscuro */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-background: #1E1E1E;
+    }
 }
