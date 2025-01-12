@@ -1,5 +1,16 @@
 import streamlit as st
 
+def validar_session_state():
+    """
+    Inicializa y valida el estado de la sesión
+    """
+    # Primero inicializamos pantalla_actual para evitar referencias antes de creación
+    if "pantalla_actual" not in st.session_state:
+        st.session_state.pantalla_actual = "pantalla1"
+    
+    if "params" not in st.session_state:
+        st.session_state.params = {}
+
 def configurar_sidebar():
     """
     Configuración unificada de la barra lateral educativa
@@ -11,9 +22,9 @@ def configurar_sidebar():
             st.markdown("""
             ### Reglas Básicas
             1. Sé específico en cada descripción
-            2. Define el estilo visual claramente
-            3. Especifica el propósito
-            4. Incluye detalles técnicos relevantes
+            2. Definí el estilo visual claramente
+            3. Especificá el propósito
+            4. Incluí detalles técnicos relevantes
             5. Evitá términos genéricos como "bonito" o "interesante"
 
             #### Ejemplo Práctico
@@ -21,10 +32,10 @@ def configurar_sidebar():
             ❌ "Una foto de un café"
             """)
 
-        with st.expander("Aprende a generar prompts"):
+        with st.expander("Aprendé a generar prompts"):
             st.markdown("""
             ### Proceso Básico
-            1. Define tu idea principal
+            1. Definí tu idea principal
             2. Elegí el tipo de imagen
             3. Especificá el propósito
             4. Ajustá detalles técnicos
@@ -42,21 +53,23 @@ def configurar_sidebar():
             - Detalles del desarrollo
             """)
 
-def validar_session_state():
-    """
-    Inicializa y valida el estado de la sesión
-    """
-    if "params" not in st.session_state:
-        st.session_state.params = {}
-    
-    if "pantalla_actual" not in st.session_state:
-        st.session_state.pantalla_actual = "pantalla1"
-
 def mostrar_herramientas():
     """
     Muestra la sección de herramientas recomendadas
     """
     st.header("🛠️ Herramientas Recomendadas")
+    
+    # Estilo para controlar el tamaño de los expanders
+    st.markdown("""
+        <style>
+        .stExpander {
+            max-height: none !important;
+        }
+        .streamlit-expanderContent {
+            height: auto !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
     
     herramientas = {
         "DALL·E (OpenAI)": "Herramienta de OpenAI para dibujar imágenes con IA. Ideal para creaciones artísticas y composiciones realistas.",
