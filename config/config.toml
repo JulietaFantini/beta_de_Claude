@@ -1,11 +1,28 @@
+# Configuración del servidor Streamlit
 [server]
 fileWatcherType = "poll"
+
+# Configuración de la página
+[browser]
 layout = "wide"
 initial_sidebar_state = "expanded"
 
+# Tema de la aplicación
 [theme]
 primaryColor = "#6B46C1"
 backgroundColor = "#F8F6FF"
 secondaryBackgroundColor = "#EEEAF5"
 textColor = "#1A202C"
 font = "monospace"
+
+# Información de la aplicación
+[app]
+name = "Generador de Prompts"
+version = "1.0.0"
+author = "Julieta Fantini"
+contact = "julietafantini@gmail.com"
+
+# Límites para validaciones
+[limits]
+max_prompt_length = 500
+min_prompt_length = 10
